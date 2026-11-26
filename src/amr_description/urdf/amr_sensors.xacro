@@ -1,0 +1,209 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:property name="lidar_radius" value="0.1"/>
+    <xacro:property name="lidar_length" value="0.1"/>
+
+    <xacro:property name="imu_length" value="0.05"/>
+    <xacro:property name="imu_width" value="0.05"/>
+    <xacro:property name="imu_height" value="0.001"/>
+
+    <xacro:property name="ultrasonic_length" value="0.05"/>
+    <xacro:property name="ultrasonic_width" value="0.1"/>
+    <xacro:property name="ultrasonic_height" value="0.05"/>
+
+    <xacro:property name="camera_length" value="0.03"/>
+    <xacro:property name="camera_width" value="0.12"/>
+    <xacro:property name="camera_height" value="0.03"/>
+
+    <link name="lidar_link">
+        <visual>
+            <geometry>
+                <cylinder radius="${lidar_radius}" length="${lidar_length}"/>
+            </geometry>
+            <origin xyz="0 0 0" rpy="0.0 0.0 0.0"/>
+            <material name="red"/>
+        </visual>
+
+        <collision>
+            <geometry>
+                <cylinder radius="${lidar_radius}" length="${lidar_length}"/>
+            </geometry>
+        </collision>
+        
+        <xacro:cylinder_inertia m="0.1" r="${lidar_radius}" l="${lidar_length}" o_xyz="0 0 0" o_rpy="0 0 0"/>
+    </link>
+
+    <joint name="laser_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="lidar_link"/>
+        <origin xyz="0.0 0.0 ${height + (lidar_length/2)}" rpy="0 0 0"/>
+    </joint>
+
+    <gazebo reference="lidar_link">
+        <preserveFixedJoint>true</preserveFixedJoint>
+    </gazebo>
+
+
+
+    <link name="imu_link">
+        <visual>
+            <geometry>
+                <box size="${imu_length} ${imu_width} ${imu_height}"/>
+            </geometry>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+            <material name="red"/>
+        </visual>
+
+        <xacro:box_inertia m="0.01" x="${imu_length}" y="${imu_width}" z="${imu_height}" o_xyz="0 0 0" o_rpy="0 0 0"/>
+
+        <collision>
+            <geometry>
+                <box size="${imu_length} ${imu_width} ${imu_height}"/>
+            </geometry>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+        </collision>
+    </link>
+
+    <joint name="imu_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="imu_link"/>
+        <origin xyz="0.0 0.0 ${height/2}" rpy="0.0 0.0 0.0"/>
+    </joint>
+
+
+    <!-- Ultrasonic Front Left -->
+    <link name="ultrasonic_front_left_link">
+        <visual>
+            <geometry>
+                <box size="${ultrasonic_length} ${ultrasonic_width} ${ultrasonic_height}"/>
+            </geometry>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+            <material name="red"/>
+        </visual>
+
+        <xacro:box_inertia m="0.01" x="${ultrasonic_length}" y="${ultrasonic_width}" z="${ultrasonic_height}" o_xyz="0 0 0" o_rpy="0 0 0"/>
+
+        <collision>
+            <geometry>
+                <box size="${ultrasonic_length} ${ultrasonic_width} ${ultrasonic_height}"/>
+            </geometry>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+        </collision>
+    </link>
+
+    <!-- Ultrasonic Front Right -->
+    <link name="ultrasonic_front_right_link">
+        <visual>
+            <geometry>
+                <box size="${ultrasonic_length} ${ultrasonic_width} ${ultrasonic_height}"/>
+            </geometry>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+            <material name="red"/>
+        </visual>
+
+        <xacro:box_inertia m="0.01" x="${ultrasonic_length}" y="${ultrasonic_width}" z="${ultrasonic_height}" o_xyz="0 0 0" o_rpy="0 0 0"/>
+
+        <collision>
+            <geometry>
+                <box size="${ultrasonic_length} ${ultrasonic_width} ${ultrasonic_height}"/>
+            </geometry>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+        </collision>
+    </link>
+
+    <!-- Ultrasonic Back Left -->
+    <link name="ultrasonic_back_left_link">
+        <visual>
+            <geometry>
+                <box size="${ultrasonic_length} ${ultrasonic_width} ${ultrasonic_height}"/>
+            </geometry>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+            <material name="red"/>
+        </visual>
+
+        <xacro:box_inertia m="0.01" x="${ultrasonic_length}" y="${ultrasonic_width}" z="${ultrasonic_height}" o_xyz="0 0 0" o_rpy="0 0 0"/>
+
+        <collision>
+            <geometry>
+                <box size="${ultrasonic_length} ${ultrasonic_width} ${ultrasonic_height}"/>
+            </geometry>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+        </collision>
+    </link>
+    
+    <!-- Ultrasonic Back Left -->
+    <link name="ultrasonic_back_right_link">
+        <visual>
+            <geometry>
+                <box size="${ultrasonic_length} ${ultrasonic_width} ${ultrasonic_height}"/>
+            </geometry>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+            <material name="red"/>
+        </visual>
+
+        <xacro:box_inertia m="0.01" x="${ultrasonic_length}" y="${ultrasonic_width}" z="${ultrasonic_height}" o_xyz="0 0 0" o_rpy="0 0 0"/>
+
+        <collision>
+            <geometry>
+                <box size="${ultrasonic_length} ${ultrasonic_width} ${ultrasonic_height}"/>
+            </geometry>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+        </collision>
+    </link>
+
+    <joint name="ultrasonic_front_left_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="ultrasonic_front_left_link"/>
+        <origin xyz="${((length/2)+(ultrasonic_length/2))} ${(width/4)} ${height/2}" rpy="0.0 0.0 0.0"/>
+    </joint>
+
+    <joint name="ultrasonic_front_right_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="ultrasonic_front_right_link"/>
+        <origin xyz="${((length/2)+(ultrasonic_length/2))} ${-(width/4)} ${height/2}" rpy="0.0 0.0 0.0"/>
+    </joint>
+
+    <joint name="ultrasonic_back_left_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="ultrasonic_back_left_link"/>
+        <origin xyz="${-((length/2)+(ultrasonic_length/2))} ${(width/4)} ${height/2}" rpy="0.0 0.0 ${pi}"/>
+    </joint>
+
+    <joint name="ultrasonic_back_right_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="ultrasonic_back_right_link"/>
+        <origin xyz="${-((length/2)+(ultrasonic_length/2))} ${-(width/4)} ${height/2}" rpy="0.0 0.0 ${pi}"/>
+    </joint>
+    
+
+    <!-- Depth Camera -->
+    <link name="camera_link">
+        <visual>
+            <geometry>
+                <box size="${camera_length} ${camera_width} ${camera_height}"/>
+            </geometry>
+            <material name="red"/>
+        </visual>
+        <collision>
+            <geometry>
+                <box size="${camera_length} ${camera_width} ${camera_height}"/>
+            </geometry>
+        </collision>
+        <xacro:box_inertia m="0.05" x="${camera_length}" y="${camera_width}" z="${camera_height}" o_xyz="0 0 0" o_rpy="0 0 0"/>
+    </link>
+
+    <joint name="camera_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="camera_link"/>
+        <origin xyz="${(length/2)+ (camera_length/2)} 0.0 ${height}" rpy="0 0 0"/>
+    </joint>
+
+    <link name="camera_depth_optical_frame"/>
+    <joint name="camera_depth_optical_joint" type="fixed">
+        <parent link="camera_link"/>
+        <child link="camera_depth_optical_frame"/>
+        <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}"/>
+    </joint>
+
+</robot>
